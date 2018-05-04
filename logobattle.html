@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title> Logo Battle </title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<style>
+
+		img{
+			margin-top:40px;
+		}
+
+		img:hover{
+			border: outset black 5px;
+		}
+
+	</style>
+
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="row text-center">
+			<h1> Logo Battle </h1>
+			<p> Select your three favorite logos!</p>
+			<p> Voting begins in: <span id="timer"></span> </p>
+			<p> Feel free to submit any additional logos! Now's your last chance! </p>
+		</div>
+
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-5">
+				<div class="row">
+					<div class="col-xs-12">
+						<img id="logo0" onclick="select(0)" src="Logos/LogoA.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo1" onclick="select(1)"  src="Logos/LogoB.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo2" onclick="select(2)" src="Logos/LogoC.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo3" onclick="select(3)"  src="Logos/LogoD.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo4" onclick="select(4)"  src="Logos/LogoE.jpg"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo5" onclick="select(5)"  src="Logos/LogoF.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo6" onclick="select(6)"  src="Logos/LogoG.jpeg"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo7" onclick="select(7)"  src="Logos/LogoH.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo8" onclick="select(8)"  src="Logos/LogoI.jpg"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo9" onclick="select(9)"  src="Logos/LogoI2.jpg"/ width="100%">
+					</div>
+					<br>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-5 col-sm-offset-2">
+				<div class="row">
+
+					<div class="col-xs-12">
+						<img id="logo10" onclick="select(10)"  src="Logos/LogoJ.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo11" onclick="select(11)"  src="Logos/LogoK.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo12" onclick="select(12)"  src="Logos/LogoL.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo13" onclick="select(13)"  src="Logos/LogoM.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo14" onclick="select(14)"  src="Logos/LogoN.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo15" onclick="select(15)"  src="Logos/LogoO.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo16" onclick="select(16)"  src="Logos/LogoP.png"/ width="100%">
+					</div>
+					<br>
+					<div class="col-xs-12">
+						<img id="logo17" onclick="select(17)"  src="Logos/LogoQ.png"/ width="100%">
+					</div>
+					<br>
+				</div>
+			</div>
+
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-xs-2 col-xs-offset-5">
+				<button class="btn btn-default" onclick="submitVote()" value="Submit Votes"> Submit Your Votes</button>
+			</div>
+		</div>
+
+		<br>
+
+	</div>
+
+	<script>
+
+	var votes = [];
+	var voteCount = 0;
+
+	if (localStorage.id == null){
+		localStorage.id = Math.floor(Math.random() * 100000);
+	}
+
+	function select(imgID) {
+		if (!votes.includes(imgID)){
+			if (voteCount <= 2){
+				document.getElementById("logo" + imgID).style.border = "solid blue 8px";
+				votes.push(imgID);
+				voteCount++;
+			}
+		}
+		else{
+			var index = votes.indexOf(imgID);
+			if (index > -1){
+				document.getElementById("logo" + imgID).style.border = "";
+				votes.splice(index, 1);
+				voteCount--;
+			}
+		}
+	}
+
+	function submitVote() {
+		if (voteCount != 3) {
+			alert("Please pick 3 choices");
+		}
+		else{
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+					//var responseData = JSON.parse(this.responseText);
+					//alert(responseData["message"]);
+					alert(this.responseText);
+					//chatSize = responseData["chatSize"];
+					//document.getElementById("chatarea").innerHTML += "<p>" + responseData["lastMessage"] + "</p>";
+				}
+			};
+			xhttp.open("GET", "/vote?vote0=" + votes[0] + "&vote1=" + votes[1] + "&vote2=" + votes[2] + "&id=" + localStorage.id, true);
+			xhttp.setRequestHeader("Content-type", "text/html");
+			xhttp.send();
+		}
+	}
+
+	</script>
+
+	<script src="js/timer.js">
+	</script>
+
+</body>
+</html>
